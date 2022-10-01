@@ -41,13 +41,13 @@ public class Campo {
 
     }
 
-    void alternarMarcacao() {
+    public void alternarMarcacao() {
         if (!aberto) {
             marcado = !marcado;
         }
     }
 
-    boolean abrir() {
+    public boolean abrir() {
         if (!aberto && !marcado) {
             aberto = true;
             if (minado) {
@@ -69,8 +69,19 @@ public class Campo {
         return vizinhos.stream().noneMatch(v -> v.minado);
     }
 
-    void minar() {
+    public void minar() {
         minado = true;
     }
+
+    public boolean isMarcado() {
+        return marcado;
+    }
+    public boolean isAberto() {
+        return aberto;
+    }
+    public boolean isFechado() {
+        return !isAberto();
+    }
+
 }
 
