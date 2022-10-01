@@ -5,6 +5,7 @@ import br.com.pantoja.cm.modelo.Campo;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.junit.gen5.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -114,5 +115,50 @@ public class CampoTeste {
         campo.abrir();
         assertTrue(campo22.isAberto() && campo11.isFechado() && campo12.isFechado());
 
+    }
+
+    @Test
+    void testeMinasNaVizinhanca1() {
+        Campo campo11 = new Campo(1, 1);
+        Campo campo12 = new Campo(1, 2);
+        campo12.minar();
+        Campo campo22 = new Campo(2, 2);
+        campo22.adicionarVizinho(campo11);
+        campo22.adicionarVizinho(campo12);
+        campo.adicionarVizinho(campo22);
+        assertTrue(campo22.minasNaVizinhanca() == 1);
+
+    }
+    @Test
+    void testeMinasNaVizinhanca2() {
+        Campo campo11 = new Campo(1, 1);
+        Campo campo12 = new Campo(1, 2);
+        campo12.minar();
+        Campo campo22 = new Campo(2, 2);
+        campo22.adicionarVizinho(campo11);
+        campo22.adicionarVizinho(campo12);
+        campo.adicionarVizinho(campo22);
+        assertTrue(campo.minasNaVizinhanca() == 0);
+    }
+    @Test
+    void testeReiniciar() {
+        campo.minar();
+        campo.alternarMarcacao();
+        campo.reiniciar();
+        assertFalse(campo.isMarcado() &&  campo.isAberto());
+    }
+    @Test
+    void testeToString1() {
+        assertEquals("?", campo.toString());
+    }
+    @Test
+    void testeToString2() {
+        campo.alternarMarcacao();
+        assertEquals("x", campo.toString());
+    }
+    @Test
+    void testeToString3() {
+        campo.abrir();
+        assertEquals(" ", campo.toString());
     }
 }
