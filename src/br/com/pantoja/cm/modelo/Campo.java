@@ -77,6 +77,7 @@ public class Campo {
         return marcado;
     }
 
+
     public boolean isAberto() {
         return aberto;
     }
