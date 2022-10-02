@@ -72,6 +72,9 @@ public class Campo {
     public void minar() {
         minado = true;
     }
+    public boolean isMinado() {
+        return minado;
+    }
 
     public boolean isMarcado() {
         return marcado;
